@@ -76,17 +76,22 @@ html, body {
 
 export interface KatexProps extends ContentOptions {
   style: StyleProp<ViewStyle>;
+  onMessage: any;
+  injectedJavaScript: string;
   onLoad: any;
   onError: any;
 }
 
 export default function Katex({ style, onLoad, onError, ...options }: KatexProps) {
+export default function Katex({ style, onLoad, onError, injectedJavaScript, onMessage, ...options }: KatexProps) {
   return <WebView
       style={style}
       source={{ html: getContent(options) }}
       onLoad={onLoad}
       onError={onError}
       renderError={onError}
+      injectedJavaScript={injectedJavaScript}
+      onMessage={onMessage}
   />;
 }
 
